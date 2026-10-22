@@ -1,0 +1,35 @@
+seed: 42
+
+data:
+  url: https://archive.ics.uci.edu/static/public/360/air+quality.zip
+  raw_dir: data/raw
+  processed_dir: data/processed
+  csv_name: AirQualityUCI.csv
+  target: NO2(GT)
+  drop_columns: [NMHC(GT)]   # ~90% missing
+  train_frac: 0.70
+  val_frac: 0.15
+
+features:
+  raw: [T, RH, AH, PT08.S1(CO), PT08.S2(NMHC), PT08.S3(NOx), PT08.S4(NO2), PT08.S5(O3)]
+  time: [hour_sin, hour_cos, dow_sin, dow_cos, month_sin, month_cos, is_weekend]
+  polynomial_degree: 1
+
+gd:
+  learning_rate: 0.05
+  epochs: 200
+  batch_size: null           # null = full batch; 1 = SGD; k = mini-batch
+  schedule: constant         # constant | step | inverse_time
+  decay: 0.1
+  step_size: 50
+  momentum: 0.0
+  early_stopping_patience: null
+  shuffle: true
+
+ridge:
+  alpha: 1.0
+  alphas_sweep: {start: -3.0, stop: 4.0, num: 50}
+
+paths:
+  figures_dir: reports/figures
+  results_md: reports/results.md

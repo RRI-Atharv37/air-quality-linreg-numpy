@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+build/
+dist/
+
+# Secrets / logs
+.env
+.env.*
+*.log
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Data / artifacts (only data/README.md and the .gitkeep placeholders are tracked)
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+artifacts/
+checkpoints/
+
+# Project tracking / assistant files
+todo.md
+CLAUDE.md
+.claude/
+.mcp.json
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

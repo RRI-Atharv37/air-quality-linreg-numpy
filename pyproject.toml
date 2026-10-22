@@ -1,0 +1,46 @@
+[project]
+name = "aqlinreg"
+version = "0.1.0"
+description = "Linear regression from scratch in NumPy, applied to UCI Air Quality NO2 prediction."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Atharv Dewangan" }]
+dependencies = [
+    "numpy>=1.26",
+    "pandas>=2.1",
+    "matplotlib>=3.8",
+    "pyyaml>=6.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+    "pre-commit>=3.7",
+    "scikit-learn>=1.4",
+    "scipy>=1.11",
+    "ipykernel>=6.29",
+    "nbformat>=5.10",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/aqlinreg"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests", "scripts"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "N", "NPY"]
+ignore = ["N802", "N803", "N806"]  # X, XtX, ... are the standard linear-algebra names
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
